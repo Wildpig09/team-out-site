@@ -1,0 +1,4 @@
+# Configuration locale de Claude Code (non publiée)
+.claude/
+skills-lock.json
+.scratch/

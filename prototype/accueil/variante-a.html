@@ -1,0 +1,302 @@
+<!doctype html>
+<!-- PROTOTYPE — à jeter. Variante A « Corporate épuré » : beaucoup de blanc, hero en deux colonnes,
+     formules présentées en tableau comparatif, processus en 4 étapes. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team Out – Team building outdoor pour entreprises</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vert:#96BE0F; --vert-fonce:#5B7400; --vert-pale:#F3F8E3;
+    --gris:#707173; --encre:#1F2224; --texte:#4A4D50; --ligne:#E6E8EA; --fond:#FAFAF9;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{font-family:Manrope,system-ui,sans-serif;color:var(--texte);background:#fff;line-height:1.6;font-size:16px}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .conteneur{max-width:1180px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{color:var(--encre);line-height:1.15;letter-spacing:-.02em}
+  .surtitre{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--vert-fonce)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:8px;font-weight:700;font-size:15px;transition:.2s}
+  .btn-plein{background:var(--encre);color:#fff}
+  .btn-plein:hover{background:#000}
+  .btn-vert{background:var(--vert);color:var(--encre)}
+  .btn-vert:hover{filter:brightness(1.05)}
+  .btn-ligne{border:1.5px solid var(--ligne);color:var(--encre)}
+  .btn-ligne:hover{border-color:var(--encre)}
+
+  /* En-tête */
+  header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--ligne);z-index:10}
+  header .conteneur{display:flex;align-items:center;justify-content:space-between;height:78px}
+  header img{height:46px;width:auto}
+  nav{display:flex;gap:30px;font-weight:600;font-size:15px;color:var(--encre)}
+  nav a:hover{color:var(--vert-fonce)}
+  .entete-droite{display:flex;align-items:center;gap:20px}
+  .langue{font-size:13px;font-weight:700;color:var(--gris)}
+  .langue b{color:var(--encre)}
+
+  /* Hero */
+  .hero{padding:80px 0 70px}
+  .hero .conteneur{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+  .hero h1{font-size:clamp(38px,5vw,60px);font-weight:800;margin:18px 0 22px}
+  .hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--vert) 62%,var(--vert) 92%,transparent 92%)}
+  .hero p.lead{font-size:19px;max-width:520px}
+  .hero .actions{display:flex;gap:12px;margin:34px 0 44px;flex-wrap:wrap}
+  .faits{display:flex;gap:40px;border-top:1px solid var(--ligne);padding-top:26px}
+  .faits strong{display:block;font-size:26px;color:var(--encre);font-weight:800}
+  .faits span{font-size:14px}
+  .hero-visuel{position:relative}
+  .hero-visuel img{border-radius:16px;aspect-ratio:4/4.3;object-fit:cover;width:100%}
+  .hero-visuel .citation{position:absolute;left:-40px;bottom:36px;max-width:300px;background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 20px 50px rgba(0,0,0,.14);font-size:14px}
+  .hero-visuel .citation p{color:var(--encre);font-weight:600}
+  .hero-visuel .citation small{display:block;margin-top:10px;color:var(--gris)}
+  .hero-visuel .pastille{position:absolute;top:22px;right:22px;background:var(--vert);color:var(--encre);font-weight:800;font-size:13px;padding:8px 14px;border-radius:999px}
+
+  /* Clients */
+  .clients{padding:34px 0;border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne);background:var(--fond)}
+  .clients .conteneur{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:space-between}
+  .clients p{font-size:14px;font-weight:600;max-width:170px}
+  .clients img{height:44px;width:auto;max-width:110px;object-fit:contain;filter:grayscale(1);opacity:.65;mix-blend-mode:multiply;transition:.2s}
+  .clients img:hover{filter:none;opacity:1}
+
+  section.bloc{padding:100px 0}
+  .bloc-titre{max-width:680px;margin-bottom:54px}
+  .bloc-titre h2{font-size:clamp(30px,3.6vw,42px);font-weight:800;margin-top:12px}
+  .bloc-titre p{margin-top:16px;font-size:18px}
+
+  /* Formules : tableau comparatif */
+  .formules{display:grid;grid-template-columns:220px repeat(3,1fr);border:1px solid var(--ligne);border-radius:16px;overflow:hidden}
+  .formules > div{padding:22px 24px;border-bottom:1px solid var(--ligne)}
+  .formules .lib{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gris);background:var(--fond)}
+  .formules .tete{border-bottom:none;padding-top:30px}
+  .formules .tete h3{font-size:22px}
+  .formules .tete .tag{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--fond);margin-bottom:12px}
+  .formules .phare{background:var(--vert-pale)}
+  .formules .phare .tag{background:var(--vert);color:var(--encre)}
+  .formules .fin{border-bottom:none}
+  .formules ul{padding-left:18px}
+  .formules a.lien{font-weight:700;color:var(--vert-fonce)}
+
+  /* Atouts */
+  .atouts{background:var(--fond)}
+  .grille-atouts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ligne);border:1px solid var(--ligne);border-radius:16px;overflow:hidden}
+  .atout{background:#fff;padding:32px 30px}
+  .atout .num{font-size:13px;font-weight:800;color:var(--vert-fonce)}
+  .atout h3{font-size:19px;margin:10px 0 8px}
+  .atout p{font-size:15px}
+
+  /* Processus */
+  .etapes{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:e}
+  .etape{border-top:3px solid var(--ligne);padding-top:24px;position:relative}
+  .etape:first-child{border-color:var(--vert)}
+  .etape::before{counter-increment:e;content:"0" counter(e);font-size:44px;font-weight:800;color:var(--ligne);display:block;line-height:1;margin-bottom:14px}
+  .etape h3{font-size:19px;margin-bottom:8px}
+  .etape p{font-size:15px}
+
+  /* Témoignages */
+  .temoignages .conteneur{display:grid;grid-template-columns:1.3fr 1fr;gap:56px}
+  .grande-citation{font-size:clamp(22px,2.4vw,30px);line-height:1.4;color:var(--encre);font-weight:600;letter-spacing:-.01em}
+  .grande-citation::before{content:"“";display:block;font-size:90px;line-height:.6;color:var(--vert);margin-bottom:10px}
+  .auteur{display:flex;align-items:center;gap:14px;margin-top:30px}
+  .auteur img{width:56px;height:56px;object-fit:contain;border:1px solid var(--ligne);border-radius:10px;padding:6px;background:#fff}
+  .auteur strong{color:var(--encre);display:block}
+  .petites{display:flex;flex-direction:column;gap:18px}
+  .petite{border:1px solid var(--ligne);border-radius:14px;padding:24px;font-size:15px}
+  .petite strong{display:block;margin-top:12px;color:var(--encre);font-size:14px}
+  .petite span{font-size:13px;color:var(--gris)}
+
+  /* CTA */
+  .cta{background:var(--encre);color:#fff;border-radius:22px;padding:64px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;margin-bottom:100px;position:relative;overflow:hidden}
+  .cta::after{content:"";position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;border:40px solid var(--vert);opacity:.18}
+  .cta h2{color:#fff;font-size:clamp(28px,3vw,38px)}
+  .cta p{color:#C9CCCF;margin-top:12px}
+  .cta .contacts{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}
+  .cta .contacts a.tel{color:#fff;font-weight:700}
+
+  footer{border-top:1px solid var(--ligne);padding:50px 0 90px;font-size:14px}
+  footer .conteneur{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  footer img{height:40px;width:auto}
+
+  @media (max-width:900px){
+    nav,.langue{display:none}
+    .hero .conteneur,.temoignages .conteneur,.cta{grid-template-columns:1fr}
+    .hero-visuel .citation{left:16px;right:16px}
+    .formules{grid-template-columns:1fr}
+    .formules .lib{display:none}
+    .grille-atouts{grid-template-columns:1fr}
+    .etapes{grid-template-columns:1fr 1fr}
+    .cta{padding:40px 28px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="conteneur">
+    <a href="#"><img src="images/logo-horizontal.png" alt="Team Out – outdoor team building"></a>
+    <nav>
+      <a href="#formules">Formules</a>
+      <a href="#atouts">Pourquoi Team Out</a>
+      <a href="#deroulement">Déroulement</a>
+      <a href="#references">Références</a>
+    </nav>
+    <div class="entete-droite">
+      <span class="langue"><b>FR</b> · NL</span>
+      <a class="btn btn-plein" href="#contact">Demander un devis</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="conteneur">
+    <div>
+      <span class="surtitre">Team building outdoor · Bruxelles & Wallonie</span>
+      <h1>Des équipes plus soudées, <em>au grand air</em>.</h1>
+      <p class="lead">Challenge d'orientation, VTT, kayak, escalade : nous organisons de A à Z des team buildings qui font collaborer vos équipes, loin du bureau.</p>
+      <div class="actions">
+        <a class="btn btn-vert" href="#contact">Demander un devis →</a>
+        <a class="btn btn-ligne" href="#formules">Voir les formules</a>
+      </div>
+      <div class="faits">
+        <div><strong>20+ ans</strong><span>d'expertise en orientation</span></div>
+        <div><strong>½ jour → séjour</strong><span>formules modulables</span></div>
+        <div><strong>Tous profils</strong><span>sportifs ou non</span></div>
+      </div>
+    </div>
+    <div class="hero-visuel">
+      <img src="images/sur-mesure.jpg" alt="Une équipe lit une carte d'orientation en forêt">
+      <span class="pastille">Activité exclusive</span>
+      <div class="citation">
+        <p>« Les 3 objectifs que nous nous étions fixés pour cette journée de team building ont été atteints. »</p>
+        <small>Simon Castex · Directeur Product Management, VOO</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="clients" id="references">
+  <div class="conteneur">
+    <p>Ils nous ont confié leur team building</p>
+    <img src="images/client-axa.png" alt="AXA">
+    <img src="images/client-tractebel.png" alt="Tractebel Engie">
+    <img src="images/client-voo.jpg" alt="VOO">
+    <img src="images/client-lampiris.jpg" alt="Lampiris">
+    <img src="images/client-ibge.jpg" alt="Bruxelles Environnement">
+    <img src="images/client-mc.jpg" alt="Mutualité Chrétienne">
+    <img src="images/client-edge.png" alt="Edge">
+  </div>
+</section>
+
+<section class="bloc" id="formules">
+  <div class="conteneur">
+    <div class="bloc-titre">
+      <span class="surtitre">Nos formules</span>
+      <h2>Une demi-journée ou plusieurs jours : choisissez votre format.</h2>
+    </div>
+    <div class="formules">
+      <div class="lib tete"></div>
+      <div class="tete phare"><span class="tag">Le plus demandé</span><h3>Challenge d'orientation</h3></div>
+      <div class="tete"><span class="tag">Journée complète</span><h3>Challenge Outdoor</h3></div>
+      <div class="tete"><span class="tag">Clé en main</span><h3>Offre sur mesure</h3></div>
+
+      <div class="lib">Durée</div>
+      <div class="phare">Une demi-journée</div>
+      <div>Une journée</div>
+      <div>Une journée à plusieurs jours</div>
+
+      <div class="lib">Au programme</div>
+      <div class="phare">Initiation à la carte, puis challenge par équipes : balises, épreuves à thème, stratégie d'itinéraire.</div>
+      <div>Le Challenge d'orientation, complété par VTT, kayak, escalade ou randonnée nature commentée.</div>
+      <div>Programme d'activités composé selon vos envies, en Belgique ou ailleurs en Europe.</div>
+
+      <div class="lib">Inclus</div>
+      <div class="phare"><ul><li>Cartes professionnelles</li><li>Moniteurs brevetés</li><li>Débriefing d'équipe</li></ul></div>
+      <div><ul><li>Matériel récent (VTT CUBE)</li><li>Encadrement breveté</li><li>Débriefing d'équipe</li></ul></div>
+      <div><ul><li>Organisation de A à Z</li><li>Hébergement et restauration</li><li>Partenaires sélectionnés</li></ul></div>
+
+      <div class="lib fin"></div>
+      <div class="phare fin"><a class="lien" href="#">Découvrir la formule →</a></div>
+      <div class="fin"><a class="lien" href="#">Découvrir la formule →</a></div>
+      <div class="fin"><a class="lien" href="#">Découvrir la formule →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="bloc atouts" id="atouts">
+  <div class="conteneur">
+    <div class="bloc-titre">
+      <span class="surtitre">Pourquoi Team Out</span>
+      <h2>Le seul team building sur cartes conçues pour l'orientation.</h2>
+      <p>Encadrés par des spécialistes brevetés, nous vous donnons accès à des lieux d'exception, dont certains sont fermés au public.</p>
+    </div>
+    <div class="grille-atouts">
+      <div class="atout"><span class="num">01</span><h3>Exclusif</h3><p>Le Challenge d'orientation sur cartes spécialement conçues, encadré par des spécialistes.</p></div>
+      <div class="atout"><span class="num">02</span><h3>Fédérateur</h3><p>Promeneur tranquille, amateur de sport cérébral ou athlète : chacun y trouve sa place.</p></div>
+      <div class="atout"><span class="num">03</span><h3>Constructif</h3><p>Esprit d'équipe, défi personnel et tactique : il faut se serrer les coudes.</p></div>
+      <div class="atout"><span class="num">04</span><h3>Multi-activités</h3><p>Orientation, VTT, kayak, escalade, randonnée : composez votre journée.</p></div>
+      <div class="atout"><span class="num">05</span><h3>Dépaysant</h3><p>Ville historique, parc ou forêt, partout en Belgique, avec des accès privilégiés.</p></div>
+      <div class="atout"><span class="num">06</span><h3>Flexible</h3><p>Des journées complètes avec restauration et hébergement si vous le souhaitez.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="bloc" id="deroulement">
+  <div class="conteneur">
+    <div class="bloc-titre">
+      <span class="surtitre">Déroulement</span>
+      <h2>Simple pour vous, mémorable pour vos équipes.</h2>
+    </div>
+    <div class="etapes">
+      <div class="etape"><h3>Votre demande</h3><p>Nombre de participants, date, lieu souhaité, objectifs : nous revenons vers vous rapidement avec une offre.</p></div>
+      <div class="etape"><h3>Un programme sur mesure</h3><p>Épreuves personnalisées à votre entreprise, choix du site et des activités complémentaires.</p></div>
+      <div class="etape"><h3>Le jour J</h3><p>Briefing, prise en main de la carte, puis challenge par équipes encadré par nos moniteurs.</p></div>
+      <div class="etape"><h3>Le débriefing</h3><p>Un moment d'échange sur la dynamique du groupe, pour ancrer les enseignements.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="bloc temoignages" style="padding-top:0">
+  <div class="conteneur">
+    <div>
+      <span class="surtitre">Témoignage</span>
+      <p class="grande-citation" style="margin-top:20px">Une grande disponibilité dans la mise au point de l'activité, des briefings clairs, un site magnifique. Une super expérience qui a contribué à dynamiser l'esprit d'équipe.</p>
+      <div class="auteur">
+        <img src="images/client-axa.png" alt="AXA">
+        <div><strong>Walter Dierickx</strong>Responsible of Product Management, AXA Belgium</div>
+      </div>
+    </div>
+    <div class="petites">
+      <div class="petite">« Motivation, disponibilité, adaptabilité et professionnalisme, aussi bien en VTT, kayak qu'en course d'orientation. »<strong>Tractebel Sports</strong><span>Tractebel Engie</span></div>
+      <div class="petite">« Une organisation sans faille, un contenu personnalisable et de qualité. »<strong>Nicolas Van Aelst</strong><span>Management Consultant, Edge</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="conteneur" id="contact">
+  <div class="cta">
+    <div>
+      <h2>Parlons de votre prochain team building.</h2>
+      <p>Chaque projet est différent : nous vous envoyons notre meilleure offre selon la durée, le nombre de participants et le lieu.</p>
+    </div>
+    <div class="contacts">
+      <a class="btn btn-vert" href="#">Demander un devis →</a>
+      <a class="tel" href="mailto:info@team-out.be">info@team-out.be</a>
+      <a class="tel" href="tel:+32486225582">+32 486 22 55 82</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="conteneur">
+    <img src="images/logo-horizontal.png" alt="Team Out">
+    <div>Formules · Atouts · Localisations · FAQ · L'équipe</div>
+    <div>© 2026 Team Out</div>
+  </div>
+</footer>
+
+<script src="switcher.js"></script>
+</body>
+</html>

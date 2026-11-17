@@ -1,0 +1,18 @@
+<!doctype html>
+<!-- PROTOTYPE — à jeter. Trois variantes de la page d'accueil Team Out, une par fichier
+     (variante-a.html, variante-b.html, variante-c.html), reliées par la barre de switcher.js.
+     Cette page redirige vers la variante demandée : index.html?variant=B -->
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Team Out – prototype</title>
+  <script>
+    var v = (new URLSearchParams(location.search).get('variant') || 'A').toLowerCase();
+    if (!/^[abc]$/.test(v)) v = 'a';
+    location.replace('variante-' + v + '.html');
+  </script>
+</head>
+<body>
+  <p><a href="variante-a.html">Ouvrir le prototype</a></p>
+</body>
+</html>
